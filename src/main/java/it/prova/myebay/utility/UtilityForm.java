@@ -15,6 +15,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.Annuncio;
+import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
@@ -22,13 +23,21 @@ import it.prova.myebay.model.Utente;
 public class UtilityForm {
 
 	public static Annuncio createAnnuncioFromParams(String testoAnnuncioInputParam, String prezzoInputParam,
-			String dataInputParam, String apertoStringParam) {
+			String[] categorieInputParam) {
 
 		Annuncio result = new Annuncio();
-		result.setAperto(apertoStringParam == null ? null : Boolean.parseBoolean(apertoStringParam));
-		result.setData(parseDateFromString(dataInputParam));
+//		result.setAperto(apertoStringParam == null ? null : Boolean.parseBoolean(apertoStringParam));
+//		result.setData(parseDateFromString(dataInputParam));
 		result.setTestoAnnuncio(StringUtils.isBlank(testoAnnuncioInputParam) ? null : testoAnnuncioInputParam);
 		result.setPrezzo(NumberUtils.isCreatable(prezzoInputParam) ? Integer.parseInt(prezzoInputParam) : null);
+
+		if (categorieInputParam != null) {
+			for (String categoriaItem : categorieInputParam) {
+				if (NumberUtils.isCreatable(categoriaItem)) {
+					result.getCategorie().add(new Categoria(Long.parseLong(categoriaItem)));
+				}
+			}
+		}
 		return result;
 	}
 

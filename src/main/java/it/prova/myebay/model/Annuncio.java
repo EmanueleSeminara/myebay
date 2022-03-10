@@ -121,4 +121,11 @@ public class Annuncio {
 		this.categorie.remove(genereInstance);
 		genereInstance.getAnnunci().remove(this);
 	}
+
+	@Override
+	public String toString() {
+		return "Annuncio [id=" + id + ", testoAnnuncio=" + testoAnnuncio + ", prezzo=" + prezzo + ", data=" + data
+				+ ", aperto=" + aperto + "]";
+	}
+
 }
