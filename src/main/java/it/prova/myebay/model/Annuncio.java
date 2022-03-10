@@ -112,4 +112,13 @@ public class Annuncio {
 		this.categorie = categoria;
 	}
 
+	public void addToCategoria(Categoria genereInstance) {
+		this.categorie.add(genereInstance);
+		genereInstance.getAnnunci().add(this);
+	}
+
+	public void removeFromCategoria(Categoria genereInstance) {
+		this.categorie.remove(genereInstance);
+		genereInstance.getAnnunci().remove(this);
+	}
 }
