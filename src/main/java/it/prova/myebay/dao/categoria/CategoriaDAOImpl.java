@@ -54,4 +54,12 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 	}
 
+	@Override
+	public Optional<Categoria> findOneEager(Long id) throws Exception {
+		return entityManager
+				.createQuery(
+						"from Categoria c left join fetch c.annunci where c.id=:idCategoria", Categoria.class)
+				.setParameter("idCategoria", id).getResultList().stream().findFirst();
+	}
+
 }
