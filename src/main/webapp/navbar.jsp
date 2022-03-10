@@ -33,7 +33,7 @@
       <div class="col-md-3 text-end">
       <c:if test="${userInfo != null}">
       	<p class="navbar-text">Utente: ${userInfo.username }(${userInfo.nome } ${userInfo.cognome })
-      	<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></p>
+      	<a href="${pageContext.request.contextPath}/ExecuteLogoutServlet">Logout</a></p>
       </c:if>
       <c:if test="${userInfo == null}">
       	<p class="navbar-text">
