@@ -54,6 +54,7 @@
 				      	 <h1 class="display-5 fw-bold">Cerca annuncio</h1>
 					     <form method="post" action="${pageContext.request.contextPath}/ExecuteSearchAnnuncioServlet"
 								class="row g-3">
+							 
 		
 		
 								<div class="col-md-6">

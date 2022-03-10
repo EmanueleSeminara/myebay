@@ -26,7 +26,6 @@ public class ExecuteSearchAnnuncioServlet extends HttpServlet {
 		System.out.println(example);
 
 		try {
-			System.out.println(MyServiceFactory.getAnnuncioServiceInstance().findByExample(example));
 			request.setAttribute("annunci_list_attribute",
 					MyServiceFactory.getAnnuncioServiceInstance().findByExample(example));
 		} catch (Exception e) {

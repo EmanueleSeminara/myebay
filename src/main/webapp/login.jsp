@@ -18,13 +18,14 @@
 	<body class="text-center">
 	    
 		<main class="form-signin">
-		  <form action="${pageContext.request.contextPath}/LoginServlet" method="post" novalidate="novalidate">
+		  <form action="${pageContext.request.contextPath}/ExecuteLoginServlet" method="post" novalidate="novalidate">
+		  	<input type="hidden" name="from" value="${param.from}">
 		  
 	  		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
 		 		 ${errorMessage}
 			</div>
 		  
-		    <img class="mb-4" src="./assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+		    <img class="mb-4" src="./assets/brand/myebay-logo.svg" alt="" width="150" height="60">
 		    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 		
 		    <div class="form-floating">
@@ -42,6 +43,7 @@
 		      </label>
 		    </div>
 		    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+		    <p>Non hai ancora un account? <a href="${pageContext.request.contextPath}/PrepareRegisterServlet">Registrati!</a></p>
 		    <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
 		  </form>
 		</main>

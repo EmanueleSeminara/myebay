@@ -37,7 +37,7 @@
       </c:if>
       <c:if test="${userInfo == null}">
       	<p class="navbar-text">
-      	<a href="${pageContext.request.contextPath}/LoginServlet">Login</a> <a href="${pageContext.request.contextPath}/RegisterServlet">Register</a></p>
+      	<a href="${pageContext.request.contextPath}/PrepareLoginServlet?from=">Login</a> <a href="${pageContext.request.contextPath}/PrepareRegisterServlet">Register</a></p>
       	
       </c:if>
      
