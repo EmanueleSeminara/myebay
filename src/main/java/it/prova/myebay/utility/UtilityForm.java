@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,7 +16,6 @@ import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Ruolo;
-import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
 
 public class UtilityForm {
@@ -83,42 +81,14 @@ public class UtilityForm {
 	}
 
 	public static Utente createUtenteFromParams(String nomeInputParam, String cognomeInputParam,
-			String usernameInputParam, String dataCreazioneStringParam) {
+			String usernameInputParam, String passwordInputParam) {
 
-		Utente result = new Utente(usernameInputParam);
+		Utente result = new Utente();
 		result.setNome(StringUtils.isBlank(nomeInputParam) ? null : nomeInputParam);
 		result.setCognome(StringUtils.isBlank(cognomeInputParam) ? null : cognomeInputParam);
-		result.setDateCreated(parseDateFromString(dataCreazioneStringParam));
-		// result.setRuoli(ruoliInputParam != null && !ruoliInputParam.isEmpty() ?
-		// ruoliInputParam : null);
-		return result;
-	}
-
-	public static Utente createUtenteFromParams(String nomeInputParam, String cognomeInputParam,
-			String usernameInputParam, String dataCreazioneStringParam, String passwordInputParam,
-			String[] ruoliInputParam, StatoUtente stato) {
-		Set<Ruolo> ruoliUtente = new HashSet<Ruolo>();
-		Utente result = new Utente(usernameInputParam);
+		result.setUsername(StringUtils.isBlank(usernameInputParam) ? null : usernameInputParam);
 		result.setPassword(StringUtils.isBlank(passwordInputParam) ? null : passwordInputParam);
-		result.setNome(StringUtils.isBlank(nomeInputParam) ? null : nomeInputParam);
-		result.setCognome(StringUtils.isBlank(cognomeInputParam) ? null : cognomeInputParam);
-		result.setStato(stato != null ? stato : result.getStato());
 
-		if (ruoliInputParam != null) {
-			for (String ruolo : ruoliInputParam) {
-				if (NumberUtils.isCreatable(ruolo)) {
-					Ruolo ruoloDaInserire = new Ruolo();
-					ruoloDaInserire.setId(Long.parseLong(ruolo));
-					ruoliUtente.add(ruoloDaInserire);
-				}
-			}
-
-			result.setRuoli(ruoliUtente);
-		}
-
-		// result.setDateCreated(parseDateArrivoFromString(dataCreazioneStringParam));
-		// result.setRuoli(ruoliInputParam != null && !ruoliInputParam.isEmpty() ?
-		// ruoliInputParam : null);
 		return result;
 	}
 

@@ -1,10 +1,8 @@
 package it.prova.myebay.service.utente;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 
@@ -137,15 +135,9 @@ public class UtenteServiceImpl implements UtenteService {
 			utenteDAO.setEntityManager(entityManager);
 
 			utenteInstance.setDateCreated(new Date());
-			Set<Ruolo> ruoli = new HashSet<Ruolo>(utenteInstance.getRuoli());
-			utenteInstance.getRuoli().clear();
 
 			// eseguo quello che realmente devo fare
 			utenteDAO.insert(utenteInstance);
-			for (Ruolo ruoloItem : ruoli) {
-				System.out.println("RUOLO CICLO: " + ruoloItem);
-				utenteInstance.getRuoli().add(ruoloItem);
-			}
 
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
