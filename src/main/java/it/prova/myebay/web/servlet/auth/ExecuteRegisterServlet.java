@@ -22,7 +22,6 @@ public class ExecuteRegisterServlet extends HttpServlet {
 		String cognomeParam = request.getParameter("cognome");
 		String usernameParam = request.getParameter("username");
 		String passwordParam = request.getParameter("password");
-		System.out.println("PASSWORD: " + passwordParam);
 		// preparo un bean (che mi serve sia per tornare in pagina
 		// che per inserire) e faccio il binding dei parametri
 		Utente utenteInstance = UtilityForm.createUtenteFromParams(nomeParam, cognomeParam, usernameParam,
@@ -37,8 +36,6 @@ public class ExecuteRegisterServlet extends HttpServlet {
 		
 		try {
 			// se la validazione non risulta ok
-			
-
 			// utenteInstance.setRuoli(ruoliParam);
 			// se sono qui i valori sono ok quindi posso creare l'oggetto da inserire
 			// occupiamoci delle operazioni di business

@@ -23,7 +23,6 @@ public class ExecuteSearchAnnuncioServlet extends HttpServlet {
 		String[] categorieParam = request.getParameterValues("categoriaInput");
 
 		Annuncio example = UtilityForm.createAnnuncioFromParams(testoParam, prezzoParam, categorieParam);
-		System.out.println(example);
 
 		try {
 			request.setAttribute("annunci_list_attribute",

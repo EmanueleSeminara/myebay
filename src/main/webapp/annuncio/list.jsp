@@ -57,9 +57,9 @@
 											<td>${annuncioItem.testoAnnuncio }</td>
 											<td>${annuncioItem.prezzo }</td>
 											<td>
-												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaUtenteServlet?idUtente=${utenteItem.id }">Visualizza</a>
-												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareEditUtenteServlet?idUtente=${utenteItem.id}">Edit</a>
-												<a class="btn btn-outline-danger btn-sm d-none" href="PrepareDeleteUtenteServlet?idUtente=${utenteItem.id}">Delete</a>
+												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaAnnuncioServlet?idAnnuncio=${annuncioItem.id }">Visualizza</a>
+												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2 d-none" href="">Edit</a>
+												<a class="btn btn-outline-danger btn-sm d-none" href="">Delete</a>
 											</td>
 										</tr>
 									</c:forEach>

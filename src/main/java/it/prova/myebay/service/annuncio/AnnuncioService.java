@@ -21,6 +21,8 @@ public interface AnnuncioService {
 	public void rimuovi(Long idAnnuncioToRemove) throws Exception;
 
 	public List<Annuncio> findByExample(Annuncio example) throws Exception;
+	
+	public List<Annuncio> cercaAnnunciAperti() throws Exception;
 
 	// per injection
 	public void setAnnuncioDAO(AnnuncioDAO annuncioDAO);
