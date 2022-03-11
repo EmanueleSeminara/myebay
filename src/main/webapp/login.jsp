@@ -25,7 +25,7 @@
 		 		 ${errorMessage}
 			</div>
 		  
-		    <img class="mb-4" src="./assets/brand/myebay-logo.svg" alt="" width="150" height="60">
+		    <img class="mb-4" src="./assets/brand/myebay-logo.svg" alt="" width="200" height="90">
 		    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 		
 		    <div class="form-floating">

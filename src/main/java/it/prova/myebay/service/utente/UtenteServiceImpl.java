@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import it.prova.myebay.dao.ruolo.RuoloDAO;
 import it.prova.myebay.dao.utente.UtenteDAO;
 import it.prova.myebay.model.Ruolo;
+import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 
@@ -291,6 +292,34 @@ public class UtenteServiceImpl implements UtenteService {
 	@Override
 	public void aggiornaUtenteERuoli(Utente utenteInstance) throws Exception {
 		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void disabilitaUtente(Long id) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// questo è come il MyConnection.getConnection()
+			entityManager.getTransaction().begin();
+
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+
+			Utente utenteDaModificare = utenteDAO.findOne(id).get();
+			utenteDaModificare.setStato(StatoUtente.DISABILITATO);
+
+			// eseguo quello che realmente devo fare
+			utenteDAO.update(utenteDaModificare);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
 
 	}
 

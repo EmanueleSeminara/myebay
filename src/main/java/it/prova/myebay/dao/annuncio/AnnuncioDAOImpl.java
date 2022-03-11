@@ -73,7 +73,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 		List<String> whereClauses = new ArrayList<String>();
 
 		StringBuilder queryBuilder = new StringBuilder(
-				"select a from Annuncio a left join a.categorie c where a.aperto = true ");
+				"select distinct a from Annuncio a left join a.categorie c where a.aperto = true ");
 
 		if (StringUtils.isNotEmpty(example.getTestoAnnuncio())) {
 			whereClauses.add(" a.testoAnnuncio  like :testoAnnuncio ");

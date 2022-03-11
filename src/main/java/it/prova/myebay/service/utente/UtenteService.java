@@ -33,6 +33,8 @@ public interface UtenteService {
 
 	public List<Utente> findByExample(Utente example) throws Exception;
 
+	public void disabilitaUtente(Long id) throws Exception;
+
 	// per injection
 	public void setUtenteDAO(UtenteDAO utenteDAO);
 
