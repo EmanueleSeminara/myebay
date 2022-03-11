@@ -45,8 +45,8 @@ public class ExecuteEditUtenteServlet extends HttpServlet {
 			// se la validazione non risulta ok
 			if (!UtilityForm.validateUtenteBean(utenteInstance)) {
 				request.setAttribute("edit_utente_attr", utenteInstance);
-				request.setAttribute("ruoli_list_attribute", UtilityForm.buildCheckedRolesFromRolesAlreadyInUtente(
-						MyServiceFactory.getRuoloServiceInstance().listAll(), utenteInstance.getRuoli()));
+				request.setAttribute("ruoli_list_attribute", UtilityForm
+						.buildCheckedRolesForPages(MyServiceFactory.getRuoloServiceInstance().listAll(), ruoliParam));
 				request.setAttribute("list_stati_attr", StatoUtente.values());
 				request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
 				request.getRequestDispatcher("/utente/edit.jsp").forward(request, response);
@@ -65,7 +65,7 @@ public class ExecuteEditUtenteServlet extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.setAttribute("ruoli_list_attribute", utenteInstance.getRuoli());
-			request.getRequestDispatcher("/home").forward(request, response);
+			request.getRequestDispatcher("/utente/home.jsp").forward(request, response);
 			return;
 		}
 

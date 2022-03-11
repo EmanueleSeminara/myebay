@@ -113,11 +113,23 @@ public class UtilityForm {
 		return result;
 	}
 
+	public static Utente createUtenteFromParamsForNewUtente(String nomeInputParam, String cognomeInputParam,
+			String usernameInputParam, String passwordInputParam) {
+
+		Utente result = new Utente();
+		result.setNome(StringUtils.isBlank(nomeInputParam) ? null : nomeInputParam);
+		result.setCognome(StringUtils.isBlank(cognomeInputParam) ? null : cognomeInputParam);
+		result.setUsername(StringUtils.isBlank(usernameInputParam) ? null : usernameInputParam);
+		result.setPassword(StringUtils.isBlank(passwordInputParam) ? null : passwordInputParam);
+
+		return result;
+	}
+
 	public static boolean validateUtenteBean(Utente utenteToBeValidated) {
 		// prima controlliamo che non siano vuoti i parametri
 		if (StringUtils.isBlank(utenteToBeValidated.getNome()) || StringUtils.isBlank(utenteToBeValidated.getCognome())
-				|| StringUtils.isBlank(utenteToBeValidated.getUsername())
-				|| StringUtils.isBlank(utenteToBeValidated.getStato().toString())) {
+				|| StringUtils.isBlank(utenteToBeValidated.getUsername()) || StringUtils.isBlank(
+						utenteToBeValidated.getStato() != null ? utenteToBeValidated.getStato().toString() : "")) {
 			return false;
 		}
 		return true;
@@ -135,6 +147,23 @@ public class UtilityForm {
 		}
 		for (Ruolo ruoloItem : listaTotaleRuoli) {
 			result.put(ruoloItem, ruoliConvertitiInIds.contains(ruoloItem.getId()));
+		}
+
+		return result;
+	}
+
+	public static Map<Ruolo, Boolean> buildCheckedRolesForPages(List<Ruolo> listaTotaleRuoli,
+			String[] ruoliFromParams) {
+		Map<Ruolo, Boolean> result = new TreeMap<>();
+
+		// converto array di string in List di Long
+		List<Long> ruoliIdConvertiti = new ArrayList<>();
+		for (String stringItem : ruoliFromParams != null ? ruoliFromParams : new String[] {}) {
+			ruoliIdConvertiti.add(Long.valueOf(stringItem));
+		}
+
+		for (Ruolo ruoloItem : listaTotaleRuoli) {
+			result.put(ruoloItem, ruoliIdConvertiti.contains(ruoloItem.getId()));
 		}
 
 		return result;

@@ -41,7 +41,7 @@
 				        <h5>Lista degli utenti</h5> 
 				    </div>
 				    <div class='card-body'>
-				    	<a class="btn btn-primary " href="${pageContext.request.contextPath}/utente/PrepareInsertUtenteServlet">Aggiungi</a>
+				    	<a class="btn btn-primary " href="${pageContext.request.contextPath}/PrepareInsertUtenteServlet">Aggiungi</a>
 				    
 				        <div class='table-responsive'>
 				            <table class='table table-striped ' >

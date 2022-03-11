@@ -1,4 +1,4 @@
-package it.prova.myebay.web.servlet.auth;
+package it.prova.myebay.web.servlet.utente;
 
 import java.io.IOException;
 
@@ -12,8 +12,8 @@ import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.utility.UtilityForm;
 
-@WebServlet("/ExecuteRegisterServlet")
-public class ExecuteRegisterServlet extends HttpServlet {
+@WebServlet("/ExecuteInsertUtenteServlet")
+public class ExecuteInsertUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -50,8 +50,7 @@ public class ExecuteRegisterServlet extends HttpServlet {
 		// andiamo ai risultati
 		// uso il sendRedirect con parametro per evitare il problema del double save on
 		// refresh
-		response.sendRedirect(request.getContextPath());
-
+		response.sendRedirect(request.getContextPath() + "/ExecuteListUtenteServlet");
 	}
 
 }
