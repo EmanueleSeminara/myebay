@@ -16,6 +16,7 @@ import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Ruolo;
+import it.prova.myebay.model.StatoUtente;
 import it.prova.myebay.model.Utente;
 
 public class UtilityForm {
@@ -80,14 +81,14 @@ public class UtilityForm {
 		}
 	}
 
-	public static Utente createUtenteFromParams(String nomeInputParam, String cognomeInputParam,
-			String usernameInputParam, String passwordInputParam) {
+	public static Utente createUtenteFromParamsForEdit(String nomeInputParam, String cognomeInputParam,
+			String usernameInputParam, String statoInputParam) {
 
 		Utente result = new Utente();
 		result.setNome(StringUtils.isBlank(nomeInputParam) ? null : nomeInputParam);
 		result.setCognome(StringUtils.isBlank(cognomeInputParam) ? null : cognomeInputParam);
 		result.setUsername(StringUtils.isBlank(usernameInputParam) ? null : usernameInputParam);
-		result.setPassword(StringUtils.isBlank(passwordInputParam) ? null : passwordInputParam);
+		result.setStato(StringUtils.isBlank(statoInputParam) ? null : StatoUtente.valueOf(statoInputParam));
 
 		return result;
 	}
@@ -116,7 +117,7 @@ public class UtilityForm {
 		// prima controlliamo che non siano vuoti i parametri
 		if (StringUtils.isBlank(utenteToBeValidated.getNome()) || StringUtils.isBlank(utenteToBeValidated.getCognome())
 				|| StringUtils.isBlank(utenteToBeValidated.getUsername())
-				|| StringUtils.isBlank(utenteToBeValidated.getPassword())) {
+				|| StringUtils.isBlank(utenteToBeValidated.getStato().toString())) {
 			return false;
 		}
 		return true;

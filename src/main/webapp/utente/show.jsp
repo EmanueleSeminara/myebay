@@ -1,4 +1,5 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -47,8 +48,25 @@
 								<dd class="col-sm-9"><fmt:formatDate type = "date" value = "${show_utente_attr.dateCreated}" /></dd>
 							</dl>
 					    	
-					    	<!-- info Regista -->
-					    	
+					    	<!-- info Ruoli -->
+			               <p>
+			                <a class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+			                	Info Ruoli
+			               	</a>
+			               </p>
+			              <div class="collapse" id="collapseExample">
+			                <div class="card card-body">
+			                  <dl class= "row">
+			                  <dt class = "col-sm-3 text-right"> Ruoli:</dt>
+			                  <c:forEach items="${show_utente_attr.ruoli}" var="ruolo">
+			                    <dd class="row-sm-9">${ ruolo.codice }-${ruolo.descrizione }</dd>
+			                    <br>
+			                  </c:forEach>
+			                </dl>
+			                  
+			                </div>
+			              <!-- end info Ruoli -->
+			              </div>
 					    	
 					    <!-- end card body -->
 					    </div>

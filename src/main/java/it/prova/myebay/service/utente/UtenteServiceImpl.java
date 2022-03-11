@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import it.prova.myebay.dao.ruolo.RuoloDAO;
 import it.prova.myebay.dao.utente.UtenteDAO;
 import it.prova.myebay.model.Ruolo;
@@ -290,8 +292,44 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
-	public void aggiornaUtenteERuoli(Utente utenteInstance) throws Exception {
-		// TODO Auto-generated method stub
+	public void aggiornaUtenteERuoli(Utente utenteInstance, String[] ruoliInput) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// questo è come il MyConnection.getConnection()
+			entityManager.getTransaction().begin();
+
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+
+			Utente utenteDaModificare = utenteDAO.findOne(utenteInstance.getId()).get();
+			utenteDaModificare.setNome(utenteInstance.getNome());
+			utenteDaModificare.setCognome(utenteInstance.getCognome());
+			utenteDaModificare.setUsername(utenteInstance.getUsername());
+			// utenteDaModificare.setRuoli(utenteInstance.getRuoli());
+			utenteDaModificare.setStato(utenteInstance.getStato());
+			utenteDaModificare.getRuoli().clear();
+
+			entityManager.merge(utenteDaModificare);
+
+			if (ruoliInput != null) {
+				for (String ruoloItem : ruoliInput) {
+					if (NumberUtils.isCreatable(ruoloItem)) {
+						utenteDaModificare.getRuoli().add(new Ruolo(Long.parseLong(ruoloItem)));
+					}
+				}
+			}
+			// eseguo quello che realmente devo fare
+			// utenteDAO.update(utenteDaModificare);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
 
 	}
 

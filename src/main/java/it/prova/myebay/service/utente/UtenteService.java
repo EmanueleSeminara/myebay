@@ -17,7 +17,7 @@ public interface UtenteService {
 
 	public void aggiorna(Utente utenteInstance) throws Exception;
 
-	public void aggiornaUtenteERuoli(Utente utenteInstance) throws Exception;
+	public void aggiornaUtenteERuoli(Utente utenteInstance, String[] ruoli) throws Exception;
 
 	public void inserisciNuovo(Utente utenteInstance) throws Exception;
 
