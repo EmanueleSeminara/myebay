@@ -1,4 +1,5 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -49,7 +50,24 @@
 							
 					    	
 					    	<!-- info Regista -->
-					    	
+					    	<p>
+			                <a class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+			                	Categorie
+			               	</a>
+			               </p>
+			              <div class="collapse" id="collapseExample">
+			                <div class="card card-body">
+			                  <dl class= "row">
+			                  <dt class = "col-sm-3 text-right"> Categorie:</dt>
+			                  <c:forEach items="${show_annuncio_attr.categorie}" var="categoria">
+			                    <dd class="row-sm-9">${ categoria.codice }-${categoria.descrizione }</dd>
+			                    <br>
+			                  </c:forEach>
+			                </dl>
+			                  
+			                </div>
+			              <!-- end info Ruoli -->
+			              </div>
 					    	
 					    <!-- end card body -->
 					    </div>
