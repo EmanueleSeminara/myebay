@@ -63,7 +63,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	@Override
 	public Optional<Annuncio> findOneEager(Long id) throws Exception {
 		return entityManager.createQuery(
-				"from Annuncio a left join fetch a.utenteInserimento u left join fetch a.categorie where a.id=:idAnnuncio and a.aperto = true",
+				"from Annuncio a left join fetch a.utenteInserimento u left join fetch a.categorie where a.id=:idAnnuncio",
 				Annuncio.class).setParameter("idAnnuncio", id).getResultList().stream().findFirst();
 	}
 
@@ -103,6 +103,48 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	@Override
 	public List<Annuncio> findAllOpened() throws Exception {
 		return entityManager.createQuery("from Annuncio a where a.aperto = true", Annuncio.class).getResultList();
+	}
+
+	@Override
+	public List<Annuncio> findByExampleForUser(Annuncio example) throws Exception {
+		Map<String, Object> paramaterMap = new HashMap<String, Object>();
+		List<String> whereClauses = new ArrayList<String>();
+
+		StringBuilder queryBuilder = new StringBuilder(
+				"select distinct a from Annuncio a left join a.categorie c where a.id = a.id ");
+
+		if (StringUtils.isNotEmpty(example.getTestoAnnuncio())) {
+			whereClauses.add(" a.testoAnnuncio  like :testoAnnuncio ");
+			paramaterMap.put("testoAnnuncio", "%" + example.getTestoAnnuncio() + "%");
+		}
+		if (example.getPrezzo() != null) {
+			whereClauses.add(" a.prezzo >= :prezzo ");
+			paramaterMap.put("prezzo", example.getPrezzo());
+		}
+
+		if (example.getCategorie() != null && !example.getCategorie().isEmpty()) {
+			whereClauses.add("c in :categorie ");
+			paramaterMap.put("categorie", example.getCategorie());
+		}
+
+		whereClauses.add("a.utenteInserimento.id = :idUtente ");
+		paramaterMap.put("idUtente", example.getUtenteInserimento().getId());
+
+		queryBuilder.append(!whereClauses.isEmpty() ? " and " : "");
+		queryBuilder.append(StringUtils.join(whereClauses, " and "));
+		TypedQuery<Annuncio> typedQuery = entityManager.createQuery(queryBuilder.toString(), Annuncio.class);
+
+		for (String key : paramaterMap.keySet()) {
+			typedQuery.setParameter(key, paramaterMap.get(key));
+		}
+
+		return typedQuery.getResultList();
+	}
+
+	@Override
+	public List<Annuncio> findAllByUtenteId(Long id) throws Exception {
+		return entityManager.createQuery("from Annuncio a where a.utenteInserimento.id = :idUtente", Annuncio.class)
+				.setParameter("idAnnuncio", id).getResultList();
 	}
 
 }

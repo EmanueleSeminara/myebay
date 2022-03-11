@@ -35,7 +35,7 @@ public class ExecuteEditUtenteServlet extends HttpServlet {
 				statoParam);
 		if (!NumberUtils.isCreatable(idUtente)) {
 			request.setAttribute("errorMessage", "Attenzione, non è stato trovato l'regista corrispondente");
-			request.getRequestDispatcher("home").forward(request, response);
+			request.getRequestDispatcher("/utente/home.jsp").forward(request, response);
 			return;
 		}
 		utenteInstance.setId(Long.parseLong(idUtente));

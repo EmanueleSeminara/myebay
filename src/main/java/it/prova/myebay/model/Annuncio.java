@@ -31,7 +31,7 @@ public class Annuncio {
 	@Column(name = "data")
 	private Date data;
 	@Column(name = "aperto")
-	private Boolean aperto;
+	private Boolean aperto = true;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "utente_id", nullable = false)
