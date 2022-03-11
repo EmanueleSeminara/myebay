@@ -68,6 +68,18 @@
 								type="date" placeholder="dd/MM/yy" title="formato : gg/mm/aaaa"
 								name="dataCreazione">
 						</div>
+						
+						<div class="col-md-6">
+							<label for="categoria" class="form-label">Ruoli</label>
+							<c:forEach items="${ruoli_list}" var="categoriaEntry">
+								<div class="form-check">
+									<input class="form-check-input" name="ruoloInput" type="checkbox" value="${categoriaEntry.id}" id="ruoloInput-${categoriaEntry.id}" ${categoriaEntry.descrizione?'checked':'' }>
+									<label class="form-check-label" for="ruoloInput-${categoriaEntry.id}" >
+										${categoriaEntry.codice}
+									</label>
+								</div>
+							</c:forEach>
+						</div>
 
 						<div class="col-12">
 							<button type="submit" name="submit" value="submit" id="submit"

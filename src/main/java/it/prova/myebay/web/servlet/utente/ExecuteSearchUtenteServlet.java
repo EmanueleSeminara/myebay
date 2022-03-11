@@ -25,8 +25,10 @@ public class ExecuteSearchUtenteServlet extends HttpServlet {
 		String cognomeParam = request.getParameter("cognome");
 		String usernameParam = request.getParameter("username");
 		String dataCreazioneParam = request.getParameter("dataCreazione");
+		String[] ruoliParam = request.getParameterValues("ruoloInput");
 
-		Utente example = UtilityForm.createUtenteFromParams(nomeParam, cognomeParam, usernameParam, dataCreazioneParam);
+		Utente example = UtilityForm.createUtenteFromParamsForSearch(nomeParam, cognomeParam, usernameParam,
+				dataCreazioneParam, ruoliParam);
 
 		try {
 			request.setAttribute("utenti_list_attribute",

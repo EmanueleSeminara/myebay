@@ -8,13 +8,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.prova.myebay.service.MyServiceFactory;
+
 @WebServlet("/PrepareSearchUtenteServlet")
 public class PrepareSearchUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/utente/search.jsp").forward(request, response);
+		try {
+			request.setAttribute("ruoli_list", MyServiceFactory.getRuoloServiceInstance().listAll());
+			request.getRequestDispatcher("/utente/search.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.getRequestDispatcher("").forward(request, response);
+			return;
+		}
+		
 	}
 
 }

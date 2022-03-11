@@ -50,7 +50,7 @@ public class UtilityForm {
 		return true;
 	}
 
-	public static Acquisto createacquistoFromParams(String descrizioneInputParam, String prezzoInputParam,
+	public static Acquisto createAcquistoFromParams(String descrizioneInputParam, String prezzoInputParam,
 			String dataInputParam) {
 
 		Acquisto result = new Acquisto();
@@ -60,7 +60,7 @@ public class UtilityForm {
 		return result;
 	}
 
-	public static boolean validateacquistoBean(Acquisto acquistoToBeValidated) {
+	public static boolean validateAcquistoBean(Acquisto acquistoToBeValidated) {
 		// prima controlliamo che non siano vuoti i parametri
 		if (StringUtils.isBlank(acquistoToBeValidated.getDescrizione()) || acquistoToBeValidated.getData() == null
 				|| acquistoToBeValidated.getPrezzo() == null || acquistoToBeValidated.getPrezzo() < 0) {
@@ -88,6 +88,26 @@ public class UtilityForm {
 		result.setCognome(StringUtils.isBlank(cognomeInputParam) ? null : cognomeInputParam);
 		result.setUsername(StringUtils.isBlank(usernameInputParam) ? null : usernameInputParam);
 		result.setPassword(StringUtils.isBlank(passwordInputParam) ? null : passwordInputParam);
+
+		return result;
+	}
+
+	public static Utente createUtenteFromParamsForSearch(String nomeInputParam, String cognomeInputParam,
+			String usernameInputParam, String passwordInputParam, String[] ruoliInputParam) {
+
+		Utente result = new Utente();
+		result.setNome(StringUtils.isBlank(nomeInputParam) ? null : nomeInputParam);
+		result.setCognome(StringUtils.isBlank(cognomeInputParam) ? null : cognomeInputParam);
+		result.setUsername(StringUtils.isBlank(usernameInputParam) ? null : usernameInputParam);
+		result.setPassword(StringUtils.isBlank(passwordInputParam) ? null : passwordInputParam);
+
+		if (ruoliInputParam != null) {
+			for (String ruoloItem : ruoliInputParam) {
+				if (NumberUtils.isCreatable(ruoloItem)) {
+					result.getRuoli().add(new Ruolo(Long.parseLong(ruoloItem)));
+				}
+			}
+		}
 
 		return result;
 	}
