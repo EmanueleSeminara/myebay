@@ -38,7 +38,6 @@ public class ExecuteSearchAcquistoServlet extends HttpServlet {
 
 		try {
 			example.setUtenteAcquirente(new Utente(Long.parseLong(idUtente)));
-			System.out.println(MyServiceFactory.getAcquistoServiceInstance().findByExample(example).size());
 			request.setAttribute("acquisti_list_attribute",
 					MyServiceFactory.getAcquistoServiceInstance().findByExample(example));
 		} catch (Exception e) {

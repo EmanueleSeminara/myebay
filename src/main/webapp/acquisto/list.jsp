@@ -8,7 +8,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	   
-	   <title>Lista Dei Film</title>
+	   <title>Lista Acquisti</title>
 	 </head>
 	 
 	<body class="d-flex flex-column h-100">
@@ -34,7 +34,7 @@
 		  
 		  		<div class='card'>
 				    <div class='card-header'>
-				        <h5>Lista dei film</h5> 
+				        <h5>Lista acquisti</h5> 
 				    </div>
 				    <div class='card-body'>
 				    	<a class="btn btn-primary " href="PrepareInsertFilmServlet">Add New</a>
@@ -56,9 +56,7 @@
 											<td>${acquistiItem.prezzo }</td>
 											<td><fmt:formatDate type = "date" value = "${acquistiItem.data }" /></td>
 											<td>
-												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaFilmServlet?idFilm=${filmItem.id }">Visualizza</a>
-												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareEditFilmServlet?idFilm=${filmItem.id }">Edit</a>
-												<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteFilmServlet?idFilm=${filmItem.id }">Delete</a>
+												<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/acquisto/ExecuteVisualizzaAcquistoServlet?idAcquisto=${acquistiItem.id }">Visualizza</a>
 											</td>
 										</tr>
 									</c:forEach>

@@ -102,4 +102,10 @@ public class AcquistoDAOImpl implements AcquistoDAO {
 				Acquisto.class).setParameter("idAcquisto", id).getResultList().stream().findFirst();
 	}
 
+	@Override
+	public List<Acquisto> listByIdUtente(Long id) throws Exception {
+		return entityManager.createQuery("from Acquisto a where a.utenteAcquirente.id = :idUtente", Acquisto.class)
+				.setParameter("idUtente", id).getResultList();
+	}
+
 }

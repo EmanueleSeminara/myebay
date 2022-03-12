@@ -10,4 +10,6 @@ public interface AcquistoDAO extends IBaseDAO<Acquisto> {
 	public List<Acquisto> findByExample(Acquisto example) throws Exception;
 
 	public Optional<Acquisto> findOneEager(Long id) throws Exception;
+
+	public List<Acquisto> listByIdUtente(Long id) throws Exception;
 }

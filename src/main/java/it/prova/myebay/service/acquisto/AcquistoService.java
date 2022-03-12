@@ -22,6 +22,8 @@ public interface AcquistoService {
 
 	public List<Acquisto> findByExample(Acquisto example) throws Exception;
 
+	public List<Acquisto> listaAcquistiPerIdUtente(Long id) throws Exception;
+
 	// per injection
 	public void setAcquistoDAO(AcquistoDAO acquistoDAO);
 }
