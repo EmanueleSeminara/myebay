@@ -5,7 +5,7 @@
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 		<!-- Custom styles per le features di bootstrap 'Columns with icons' -->
-	   <link href="../assets/css/features.css" rel="stylesheet">
+	   <link href="${pageContext.request.contextPath}/assets/css/features.css" rel="stylesheet">
 	   
 	   <title>Raccolta Film</title>
 	 </head>
@@ -85,7 +85,7 @@
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
 			        </div>
 			        <h2>Gestione utenze</h2>
-			        <a href="PrepareSearchUtenteServlet" class="icon-link">
+			        <a href="${pageContext.request.contextPath}/PrepareSearchUtenteServlet" class="icon-link">
 			          Vai alla funzionalità
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 			        </a>

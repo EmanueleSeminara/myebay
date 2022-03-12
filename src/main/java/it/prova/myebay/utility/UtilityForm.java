@@ -43,8 +43,7 @@ public class UtilityForm {
 	public static boolean validateAnnuncioBean(Annuncio annuncioToBeValidated) {
 		// prima controlliamo che non siano vuoti i parametri
 		if (StringUtils.isBlank(annuncioToBeValidated.getTestoAnnuncio()) || annuncioToBeValidated.getAperto() == null
-				|| annuncioToBeValidated.getPrezzo() == null || annuncioToBeValidated.getPrezzo() < 0
-				|| annuncioToBeValidated.getData() == null) {
+				|| annuncioToBeValidated.getPrezzo() == null || annuncioToBeValidated.getPrezzo() < 0) {
 
 			return false;
 		}

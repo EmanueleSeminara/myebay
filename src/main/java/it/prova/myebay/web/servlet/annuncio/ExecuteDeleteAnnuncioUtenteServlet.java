@@ -52,7 +52,9 @@ public class ExecuteDeleteAnnuncioUtenteServlet extends HttpServlet {
 		// "ExecuteListAnnuncioUtenteServlet?operationResult=SUCCESS&idUtente=" +
 		// idUtenteParam;
 		// System.out.println(redirect);
-		request.getRequestDispatcher("../utente/home.jsp").forward(request, response);
+		// request.getRequestDispatcher("../utente/home.jsp").forward(request,
+		// response);
+		response.sendRedirect(request.getContextPath() + "/utente/home.jsp");
 	}
 
 }
