@@ -12,7 +12,7 @@ public interface AnnuncioService {
 
 	public Annuncio caricaSingoloElementoEager(Long id) throws Exception;
 
-	public void aggiorna(Annuncio annuncioInstance) throws Exception;
+	public void aggiorna(Annuncio annuncioInstance, String[] categorie) throws Exception;
 
 	public void inserisciNuovo(Annuncio annuncioInstance) throws Exception;
 
@@ -25,7 +25,7 @@ public interface AnnuncioService {
 	public List<Annuncio> findByExampleForUser(Annuncio example) throws Exception;
 
 	public List<Annuncio> cercaAnnunciAperti() throws Exception;
-	
+
 	public List<Annuncio> listaAnnunciPerIdUtente(Long id) throws Exception;
 
 	// per injection

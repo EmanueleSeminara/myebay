@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import it.prova.myebay.dao.annuncio.AnnuncioDAO;
 import it.prova.myebay.exceptions.ElementNotFoundException;
 import it.prova.myebay.exceptions.InvalidUserException;
 import it.prova.myebay.model.Annuncio;
+import it.prova.myebay.model.Categoria;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 
 public class AnnuncioServiceImpl implements AnnuncioService {
@@ -76,15 +79,27 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 	}
 
 	@Override
-	public void aggiorna(Annuncio annuncioInstance) throws Exception {
+	public void aggiorna(Annuncio annuncioInstance, String[] categorie) throws Exception {
 		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
 
 		try {
 			entityManager.getTransaction().begin();
 
 			annuncioDAO.setEntityManager(entityManager);
+			Annuncio annuncioDaModificare = annuncioDAO.findOneEager(annuncioInstance.getId()).get();
+			annuncioDaModificare.setTestoAnnuncio(annuncioInstance.getTestoAnnuncio());
+			annuncioDaModificare.setPrezzo(annuncioInstance.getPrezzo());
+			annuncioDaModificare.getCategorie().clear();
 
-			annuncioDAO.update(annuncioInstance);
+			entityManager.merge(annuncioDaModificare);
+
+			if (categorie != null) {
+				for (String categoriaItem : categorie) {
+					if (NumberUtils.isCreatable(categoriaItem)) {
+						annuncioDaModificare.getCategorie().add(new Categoria(Long.parseLong(categoriaItem)));
+					}
+				}
+			}
 
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {

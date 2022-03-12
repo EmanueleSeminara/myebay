@@ -19,6 +19,7 @@ public class ExecuteVisualizzaAnnuncioUtenteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String idAnnuncioParam = request.getParameter("idAnnuncio");
 
 		if (!NumberUtils.isCreatable(idAnnuncioParam)) {
@@ -27,26 +28,16 @@ public class ExecuteVisualizzaAnnuncioUtenteServlet extends HttpServlet {
 			request.getRequestDispatcher("").forward(request, response);
 			return;
 		}
-
 		try {
 			Annuncio annuncioInstance = MyServiceFactory.getAnnuncioServiceInstance()
 					.caricaSingoloElementoEager(Long.parseLong(idAnnuncioParam));
-			System.out.println(idAnnuncioParam);
-			if (annuncioInstance == null) {
-				request.setAttribute("errorMessage", "Elemento non trovato.");
-				request.getRequestDispatcher("/utente/home.jsp").forward(request, response);
-				return;
-			}
-
 			request.setAttribute("show_annuncio_attr", annuncioInstance);
 		} catch (Exception e) {
-			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("").forward(request, response);
 			return;
 		}
-
 		request.getRequestDispatcher("/annuncio/showUser.jsp").forward(request, response);
 	}
 

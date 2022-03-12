@@ -55,7 +55,6 @@ public class ExecuteInsertAnnuncioUtenteServlet extends HttpServlet {
 			// occupiamoci delle operazioni di business
 			MyServiceFactory.getAnnuncioServiceInstance().inserisciNuovo(annuncioInstance);
 		} catch (Exception e) {
-			System.out.println("CATCH FINALE");
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("/utente/home.jsp").forward(request, response);

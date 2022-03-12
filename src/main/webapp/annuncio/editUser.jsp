@@ -33,17 +33,17 @@
 							<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 		
 		
-							<form method="post" action="${pageContext.request.contextPath}/annuncio/ExecuteInsertAnnuncioUtenteServlet" class="row g-3" novalidate="novalidate">
-								<input type="hidden" name="idUtente" value="${userInfo.id}">
+							<form method="post" action="${pageContext.request.contextPath}/annuncio/ExecuteEditAnnuncioUtenteServlet" class="row g-3" novalidate="novalidate">
+								<input type="hidden" name="idAnnuncio" value="${edit_annuncio_attr.id}">
 							
 								<div class="col-md-6">
 									<label for="testoAnnuncio" class="form-label">Testo annuncio</label>
-									<input type="text" name="testoAnnuncio" id="testoAnnuncio" class="form-control" placeholder="Inserire il testo annuncio" value="${insert_annuncio_attr.testoAnnuncio }">
+									<input type="text" name="testoAnnuncio" id="testoAnnuncio" class="form-control" placeholder="Inserire il testo annuncio" value="${edit_annuncio_attr.testoAnnuncio }">
 								</div>
 								
 								<div class="col-md-6">
 									<label for="prezzo" class="form-label">Prezzo</label>
-									<input type="text" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" value="${insert_annuncio_attr.prezzo }">
+									<input type="text" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" value="${edit_annuncio_attr.prezzo }">
 								</div>
 								<div class="col-md-6">
 									<label for="categoria" class="form-label">Categorie</label>
