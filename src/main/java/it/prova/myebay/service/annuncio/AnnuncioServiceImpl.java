@@ -1,24 +1,42 @@
 package it.prova.myebay.service.annuncio;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import it.prova.myebay.dao.acquisto.AcquistoDAO;
 import it.prova.myebay.dao.annuncio.AnnuncioDAO;
+import it.prova.myebay.dao.utente.UtenteDAO;
+import it.prova.myebay.exceptions.CreditoInsufficienteException;
 import it.prova.myebay.exceptions.ElementNotFoundException;
 import it.prova.myebay.exceptions.InvalidUserException;
+import it.prova.myebay.model.Acquisto;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
+import it.prova.myebay.model.Utente;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 
 public class AnnuncioServiceImpl implements AnnuncioService {
 	private AnnuncioDAO annuncioDAO;
+	private UtenteDAO utenteDAO;
+	private AcquistoDAO acquistoDAO;
 
 	@Override
 	public void setAnnuncioDAO(AnnuncioDAO annuncioDAO) {
 		this.annuncioDAO = annuncioDAO;
+	}
+
+	@Override
+	public void setUtenteDAO(UtenteDAO utenteDAO) {
+		this.utenteDAO = utenteDAO;
+	}
+
+	@Override
+	public void setAcquistoDAO(AcquistoDAO acquistoDAO) {
+		this.acquistoDAO = acquistoDAO;
 	}
 
 	@Override
@@ -241,6 +259,46 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 		} finally {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
+	}
+
+	@Override
+	public void acquista(Long idUtente, Long idAnnuncio) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			entityManager.getTransaction().begin();
+
+			annuncioDAO.setEntityManager(entityManager);
+			acquistoDAO.setEntityManager(entityManager);
+			utenteDAO.setEntityManager(entityManager);
+
+			Utente utenteAcquirente = utenteDAO.findOne(idUtente).get();
+			Annuncio annuncioDaComprare = annuncioDAO.findOneEager(idAnnuncio).get();
+			if (utenteAcquirente.getCreditoResiduo() < annuncioDaComprare.getPrezzo() || utenteAcquirente == null
+					|| annuncioDaComprare == null) {
+				throw new CreditoInsufficienteException(
+						"Non è possibile completare l'acquisto, il credito è insufficiente");
+			}
+
+			utenteAcquirente.setCreditoResiduo(utenteAcquirente.getCreditoResiduo() - annuncioDaComprare.getPrezzo());
+			annuncioDaComprare.setAperto(false);
+
+			Acquisto acquistoEffettuato = new Acquisto(annuncioDaComprare.getTestoAnnuncio(), new Date(),
+					annuncioDaComprare.getPrezzo(), utenteAcquirente);
+
+			utenteDAO.update(utenteAcquirente);
+			annuncioDAO.update(annuncioDaComprare);
+			acquistoDAO.insert(acquistoEffettuato);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+
 	}
 
 }
