@@ -65,7 +65,7 @@
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
 			        </div>
 			        <h2>Acquisti effettuati</h2>
-			        <a href="PrepareSearchRegistaServlet" class="icon-link">
+			        <a href="${pageContext.request.contextPath}/acquisto/PrepareSearchAcquistoServlet" class="icon-link">
 			          Vai alla funzionalità
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 			        </a>

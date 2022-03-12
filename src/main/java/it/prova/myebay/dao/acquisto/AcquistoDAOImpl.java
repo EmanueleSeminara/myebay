@@ -65,15 +65,19 @@ public class AcquistoDAOImpl implements AcquistoDAO {
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
 		List<String> whereClauses = new ArrayList<String>();
 
-		StringBuilder queryBuilder = new StringBuilder("select a from Acquisto a where a.id = a.id ");
+		StringBuilder queryBuilder = new StringBuilder(
+				"select a from Acquisto a join a.utenteAcquirente where a.id = a.id ");
+
+		whereClauses.add(" a.utenteAcquirente.id  = :idUtente ");
+		paramaterMap.put("idUtente", example.getUtenteAcquirente().getId());
 
 		if (StringUtils.isNotEmpty(example.getDescrizione())) {
 			whereClauses.add(" a.descrizione  like :descrizione ");
 			paramaterMap.put("descrizione", "%" + example.getDescrizione() + "%");
 		}
 		if (example.getPrezzo() != null) {
-			whereClauses.add(" a.prezzo like :prezzo ");
-			paramaterMap.put("prezzo", "%" + example.getPrezzo() + "%");
+			whereClauses.add(" a.prezzo >= :prezzo ");
+			paramaterMap.put("prezzo", example.getPrezzo());
 		}
 
 		if (example.getData() != null) {
@@ -94,10 +98,8 @@ public class AcquistoDAOImpl implements AcquistoDAO {
 
 	@Override
 	public Optional<Acquisto> findOneEager(Long id) throws Exception {
-		return entityManager
-				.createQuery(
-						"from Acquisto a left join fetch a.utenteAcquirente where a.id=:idAcquisto", Acquisto.class)
-				.setParameter("idAcquisto", id).getResultList().stream().findFirst();
+		return entityManager.createQuery("from Acquisto a left join fetch a.utenteAcquirente where a.id=:idAcquisto",
+				Acquisto.class).setParameter("idAcquisto", id).getResultList().stream().findFirst();
 	}
 
 }
