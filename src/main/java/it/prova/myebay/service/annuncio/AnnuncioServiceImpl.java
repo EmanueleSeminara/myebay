@@ -281,6 +281,7 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 			}
 
 			utenteAcquirente.setCreditoResiduo(utenteAcquirente.getCreditoResiduo() - annuncioDaComprare.getPrezzo());
+			
 			annuncioDaComprare.setAperto(false);
 
 			Acquisto acquistoEffettuato = new Acquisto(annuncioDaComprare.getTestoAnnuncio(), new Date(),
