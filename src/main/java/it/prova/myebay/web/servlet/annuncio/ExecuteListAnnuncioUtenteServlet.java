@@ -12,7 +12,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.service.MyServiceFactory;
 
-@WebServlet("/ExecuteListAnnuncioUtenteServlet")
+@WebServlet("/annuncio/ExecuteListAnnuncioUtenteServlet")
 public class ExecuteListAnnuncioUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -22,8 +22,8 @@ public class ExecuteListAnnuncioUtenteServlet extends HttpServlet {
 
 		if (!NumberUtils.isCreatable(idUtente)) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("").forward(request, response);
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore, id non valido.");
+			request.getRequestDispatcher("/").forward(request, response);
 			return;
 		}
 		try {
@@ -33,7 +33,7 @@ public class ExecuteListAnnuncioUtenteServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("").forward(request, response);
+			request.getRequestDispatcher("/").forward(request, response);
 			return;
 		}
 	}

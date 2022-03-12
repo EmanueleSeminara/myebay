@@ -59,7 +59,7 @@
 											<td>
 												<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/annuncio/ExecuteVisualizzaAnnuncioUtenteServlet?idAnnuncio=${annuncioItem.id }">Visualizza</a>
 												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2 ${annuncioItem.aperto? '':'disabled' }" href="">Modifica</a>
-												<a class="btn btn-outline-danger btn-sm ${annuncioItem.aperto? '':'disabled' }" href="">Elimina</a>
+												<a class="btn btn-outline-danger btn-sm ${annuncioItem.aperto? '':'disabled' }" href="${pageContext.request.contextPath}/annuncio/PrepareDeleteAnnuncioUtenteServlet?idAnnuncio=${annuncioItem.id }">Elimina</a>
 											</td>
 										</tr>
 									</c:forEach>

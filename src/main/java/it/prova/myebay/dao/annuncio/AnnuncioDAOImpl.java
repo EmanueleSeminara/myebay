@@ -144,7 +144,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO {
 	@Override
 	public List<Annuncio> findAllByUtenteId(Long id) throws Exception {
 		return entityManager.createQuery("from Annuncio a where a.utenteInserimento.id = :idUtente", Annuncio.class)
-				.setParameter("idAnnuncio", id).getResultList();
+				.setParameter("idUtente", id).getResultList();
 	}
 
 }
