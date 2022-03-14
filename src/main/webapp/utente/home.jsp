@@ -51,7 +51,7 @@
 			     <div class="p-5 mb-4 bg-light rounded-3">
 				      <div class="container-fluid py-5">
 				        <h1 class="display-5 fw-bold">Bentornato, ${userInfo.nome}</h1>
-				        <a class="btn btn-primary btn-lg" href="PrepareSearchRegistaServlet">Cerca annunci</a>
+				        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}">Cerca annunci</a>
 				      </div>
 			    </div>
 			    
@@ -85,7 +85,7 @@
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
 			        </div>
 			        <h2>Gestione utenze</h2>
-			        <a href="${pageContext.request.contextPath}/PrepareSearchUtenteServlet" class="icon-link">
+			        <a href="${pageContext.request.contextPath}/utente/PrepareSearchUtenteServlet" class="icon-link">
 			          Vai alla funzionalità
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 			        </a>

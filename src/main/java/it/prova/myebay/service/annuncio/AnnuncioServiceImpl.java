@@ -274,14 +274,17 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 
 			Utente utenteAcquirente = utenteDAO.findOne(idUtente).get();
 			Annuncio annuncioDaComprare = annuncioDAO.findOneEager(idAnnuncio).get();
-			if (utenteAcquirente.getCreditoResiduo() < annuncioDaComprare.getPrezzo() || utenteAcquirente == null
-					|| annuncioDaComprare == null) {
+			if (utenteAcquirente.getCreditoResiduo() < annuncioDaComprare.getPrezzo()) {
 				throw new CreditoInsufficienteException(
 						"Non è possibile completare l'acquisto, il credito è insufficiente");
 			}
 
+			if (utenteAcquirente == null || annuncioDaComprare == null || !annuncioDaComprare.getAperto()) {
+				throw new RuntimeException("Impossibile completare l'acquisto");
+			}
+
 			utenteAcquirente.setCreditoResiduo(utenteAcquirente.getCreditoResiduo() - annuncioDaComprare.getPrezzo());
-			
+
 			annuncioDaComprare.setAperto(false);
 
 			Acquisto acquistoEffettuato = new Acquisto(annuncioDaComprare.getTestoAnnuncio(), new Date(),

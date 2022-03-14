@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import it.prova.myebay.exceptions.CreditoInsufficienteException;
 import it.prova.myebay.service.MyServiceFactory;
 
 @WebServlet("/annuncio/ExecuteBuyAnnuncioServlet")
@@ -22,6 +23,7 @@ public class ExecuteBuyAnnuncioServlet extends HttpServlet {
 		String idAnnuncio = request.getParameter("idAnnuncio");
 
 		if (!NumberUtils.isCreatable(idUtente) || !NumberUtils.isCreatable(idAnnuncio)) {
+			System.out.println("CIRO");
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("").forward(request, response);
@@ -33,14 +35,18 @@ public class ExecuteBuyAnnuncioServlet extends HttpServlet {
 					Long.parseLong(idAnnuncio));
 			request.setAttribute("acquisti_list_attribute",
 					MyServiceFactory.getAcquistoServiceInstance().listaAcquistiPerIdUtente(Long.parseLong(idUtente)));
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
+		} catch (CreditoInsufficienteException e) {
 			e.printStackTrace();
+			request.setAttribute("errorMessage", "Il credito residuo non è sufficiente per completare l'acquisto.");
+			request.getRequestDispatcher("/").forward(request, response);
+			return;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.getRequestDispatcher("/").forward(request, response);
+			return;
 		}
-		
+
 		request.getRequestDispatcher("/annuncio/ExecuteListAcquistoServlet").forward(request, response);
 	}
 

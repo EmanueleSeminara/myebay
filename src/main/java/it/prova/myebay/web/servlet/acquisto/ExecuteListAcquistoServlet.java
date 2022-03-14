@@ -27,10 +27,11 @@ public class ExecuteListAcquistoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String idUtente = request.getParameter("idUtente");
+		System.out.println(idUtente);
 
 		if (!NumberUtils.isCreatable(idUtente)) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore, id non valido.");
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore, id non valido..........");
 			request.getRequestDispatcher("/").forward(request, response);
 			return;
 		}

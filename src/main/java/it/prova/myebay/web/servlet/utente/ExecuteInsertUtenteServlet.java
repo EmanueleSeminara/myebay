@@ -12,7 +12,7 @@ import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.utility.UtilityForm;
 
-@WebServlet("/ExecuteInsertUtenteServlet")
+@WebServlet("/utente/ExecuteInsertUtenteServlet")
 public class ExecuteInsertUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -50,7 +50,7 @@ public class ExecuteInsertUtenteServlet extends HttpServlet {
 		// andiamo ai risultati
 		// uso il sendRedirect con parametro per evitare il problema del double save on
 		// refresh
-		response.sendRedirect(request.getContextPath() + "/ExecuteListUtenteServlet");
+		response.sendRedirect(request.getContextPath() + "/utente/ExecuteListUtenteServlet");
 	}
 
 }

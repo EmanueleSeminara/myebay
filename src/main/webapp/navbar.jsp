@@ -12,15 +12,18 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}">Home</a>
           </li>
+          <c:if test="${userInfo != null}">
+	          <li class="nav-item">
+	            <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/utente/home.jsp">Area personale</a>
+	          </li>
+          </c:if>
 
 		  <c:if test="${userInfo != null}">
 	          <li class="nav-item dropdown">
 	            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Strumenti</a>
 	            <ul class="dropdown-menu" aria-labelledby="dropdown07">
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareSearchRegistaServlet">Ricerca Registi</a></li>
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareInsertRegistaServlet">Inserisci Regista</a></li>
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareSearchFilmServlet">Ricerca Film</a></li>
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/PrepareInsertFilmServlet">Inserisci Film</a></li>
+	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/annuncio/PrepareInsertAnnuncioUtenteServlet">Inserisci Annuncio</a></li>
+	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/acquisto/PrepareSearchAcquistoServlet">Aquisti Effettuati</a></li>
 	              <c:if test="${userInfo.isAdmin()}">
 	              	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/utente/PrepareSearchUtenteServlet">Ricerca utenti</a></li>
 	              	<li><a class="dropdown-item" href="${pageContext.request.contextPath}/utente/PrepareInsertUtenteServlet">Inserisci utente</a></li>

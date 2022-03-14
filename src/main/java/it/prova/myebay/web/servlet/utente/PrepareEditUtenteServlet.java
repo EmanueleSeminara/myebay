@@ -15,7 +15,7 @@ import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
 import it.prova.myebay.utility.UtilityForm;
 
-@WebServlet("/PrepareEditUtenteServlet")
+@WebServlet("/utente/PrepareEditUtenteServlet")
 public class PrepareEditUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -41,7 +41,7 @@
 				        <h5>Lista degli utenti</h5> 
 				    </div>
 				    <div class='card-body'>
-				    	<a class="btn btn-primary " href="${pageContext.request.contextPath}/PrepareInsertUtenteServlet">Aggiungi</a>
+				    	<a class="btn btn-primary " href="${pageContext.request.contextPath}/utente/PrepareInsertUtenteServlet">Aggiungi</a>
 				    
 				        <div class='table-responsive'>
 				            <table class='table table-striped ' >
@@ -62,9 +62,9 @@
 											<td>${utenteItem.username }</td>
 											<td><fmt:formatDate type = "date" value = "${utenteItem.dateCreated }" /></td>
 											<td>
-												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaUtenteServlet?idUtente=${utenteItem.id }">Visualizza</a>
-												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareEditUtenteServlet?idUtente=${utenteItem.id}">Modifica</a>
-												<a class="btn btn-outline-danger btn-sm" href="PrepareDisableUtenteServlet?idUtente=${utenteItem.id}">Disabilita</a>
+												<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/utente/ExecuteVisualizzaUtenteServlet?idUtente=${utenteItem.id }">Visualizza</a>
+												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/utente/PrepareEditUtenteServlet?idUtente=${utenteItem.id}">Modifica</a>
+												<a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/utente/PrepareDisableUtenteServlet?idUtente=${utenteItem.id}">Disabilita</a>
 											</td>
 										</tr>
 									</c:forEach>

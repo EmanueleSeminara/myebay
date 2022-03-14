@@ -13,7 +13,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.myebay.exceptions.ElementNotFoundException;
 import it.prova.myebay.service.MyServiceFactory;
 
-@WebServlet("/ExecuteDisableUtenteServlet")
+@WebServlet("/utente/ExecuteDisableUtenteServlet")
 public class ExecuteDisableUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

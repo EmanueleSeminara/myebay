@@ -13,7 +13,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
 
-@WebServlet("/PrepareDisableUtenteServlet")
+@WebServlet("/utente/PrepareDisableUtenteServlet")
 public class PrepareDisableUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

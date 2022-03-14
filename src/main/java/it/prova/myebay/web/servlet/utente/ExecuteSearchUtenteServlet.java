@@ -15,7 +15,7 @@ import it.prova.myebay.utility.UtilityForm;
 /**
  * Servlet implementation class ExecuteSearchUtenteServlet
  */
-@WebServlet("/ExecuteSearchUtenteServlet")
+@WebServlet("/utente/ExecuteSearchUtenteServlet")
 public class ExecuteSearchUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -39,7 +39,7 @@ public class ExecuteSearchUtenteServlet extends HttpServlet {
 			request.getRequestDispatcher("search.jsp").forward(request, response);
 			return;
 		}
-		request.getRequestDispatcher("utente/list.jsp").forward(request, response);
+		request.getRequestDispatcher("list.jsp").forward(request, response);
 	}
 
 }

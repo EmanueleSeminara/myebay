@@ -41,7 +41,7 @@
 				</div>
 				<div class='card-body'>
 					<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
-					<form method="post" action="${pageContext.request.contextPath}/ExecuteEditUtenteServlet"
+					<form method="post" action="${pageContext.request.contextPath}/utente/ExecuteEditUtenteServlet"
 						class="row g-3">
 					<input type="hidden" name="idUtente" value="${edit_utente_attr.id}">
 

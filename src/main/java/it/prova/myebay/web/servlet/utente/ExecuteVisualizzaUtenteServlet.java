@@ -16,7 +16,7 @@ import it.prova.myebay.service.MyServiceFactory;
 /**
  * Servlet implementation class ExecuteVisualizzaUtenteServlet
  */
-@WebServlet("/ExecuteVisualizzaUtenteServlet")
+@WebServlet("/utente/ExecuteVisualizzaUtenteServlet")
 public class ExecuteVisualizzaUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
