@@ -52,4 +52,16 @@ public class ExecuteVisualizzaAnnuncioServlet extends HttpServlet {
 		request.getRequestDispatcher("/annuncio/show.jsp").forward(request, response);
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			this.doGet(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

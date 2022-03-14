@@ -24,6 +24,7 @@ public class ExecuteLoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String loginInput = request.getParameter("inputUsername");
 		String passwordInput = request.getParameter("inputPassword");
+		String idAnnuncio = request.getParameter("idAnnuncio");
 
 		if (StringUtils.isEmpty(loginInput) || StringUtils.isEmpty(passwordInput)) {
 			request.setAttribute("errorMessage", "E' necessario riempire tutti i campi.");
@@ -40,8 +41,13 @@ public class ExecuteLoginServlet extends HttpServlet {
 				destinazione = "login.jsp";
 			} else {
 				request.getSession().setAttribute("userInfo", utenteInstance);
-				//destinazione = request.getParameter("from");
-				destinazione = "/utente/home.jsp";
+				if (idAnnuncio == null) {
+					destinazione = "/utente/home.jsp";
+				} else {
+					request.setAttribute("idAnnuncio", idAnnuncio);
+					destinazione = "/ExecuteVisualizzaAnnuncioServlet";
+				}
+				// destinazione = request.getParameter("from");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

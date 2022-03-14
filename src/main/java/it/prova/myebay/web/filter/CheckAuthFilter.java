@@ -22,7 +22,7 @@ public class CheckAuthFilter implements Filter {
 			"login.jsp", "register.jsp", "/ExecuteSearchAnnuncioServlet", "/annuncio/list.jsp",
 			"ExecuteVisualizzaAnnuncioServlet", "/annuncio/show.jsp" };
 	private static final String[] ADMIN_URLS = { "/utente" };
-	private static final String[] CLASSIC_USER_URLS = {};
+	private static final String[] CLASSIC_USER_URLS = { "/annuncio", "/acquisto", "home.jsp" };
 
 	public CheckAuthFilter() {
 	}
@@ -47,6 +47,12 @@ public class CheckAuthFilter implements Filter {
 			Utente utenteInSession = (Utente) httpRequest.getSession().getAttribute("userInfo");
 			// intanto verifico se utente in sessione
 			if (utenteInSession == null) {
+				String idUtente = request.getParameter("idUtente");
+				if (idUtente != null) {
+					request.setAttribute("idAnnuncio", request.getParameter("idAnnuncio"));
+					httpRequest.getRequestDispatcher("/PrepareLoginServlet").forward(httpRequest, httpResponse);
+					return;
+				}
 				httpResponse.sendRedirect(httpRequest.getContextPath());
 				return;
 			}

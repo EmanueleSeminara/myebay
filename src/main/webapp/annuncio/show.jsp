@@ -76,7 +76,7 @@
 					        <a href="${pageContext.request.contextPath }/ExecuteListAnnuncioServlet" class='btn btn-outline-secondary' style='width:80px'>
 					            <i class='fa fa-chevron-left'></i> Back
 					        </a>
-					        <a href="${pageContext.request.contextPath }/annuncio/ExecuteBuyAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}&idUtente=${userInfo.id}" class='btn btn-outline-primary' style='width:85px'>
+					        <a href="${pageContext.request.contextPath }/annuncio/ExecuteBuyAnnuncioServlet?idAnnuncio=${show_annuncio_attr.id}&idUtente=${userInfo.id}&path=ExecuteVisualizzaAnnuncioServlet" class='btn btn-outline-primary' style='width:85px'>
 					            <i class='fa fa-chevron-left'></i> Compra
 					        </a>
 					    </div>

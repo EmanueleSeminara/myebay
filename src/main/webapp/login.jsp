@@ -10,7 +10,7 @@
 	
 	
 		 <!-- Custom styles for login -->
-	    <link href="assets/css/signin.css" rel="stylesheet">
+	    <link href="${pageContext.request.contextPath}/assets/css/signin.css" rel="stylesheet">
 	
 	</head>
 	
@@ -19,13 +19,17 @@
 	    
 		<main class="form-signin">
 		  <form action="${pageContext.request.contextPath}/ExecuteLoginServlet" method="post" novalidate="novalidate">
-		  	<input type="hidden" name="from" value="${param.from}">
+		  	<input type="hidden" name="idAnnuncio" value="${idAnnuncio}">
 		  
 	  		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
 		 		 ${errorMessage}
 			</div>
+			
+			<div class="alert alert-danger alert-dismissible fade show ${path==null?'d-none': ''}" role="alert">
+		 		 ${path}
+			</div>
 		  
-		    <img class="mb-4" src="./assets/brand/myebay-logo.svg" alt="" width="200" height="90">
+		    <img class="mb-4" src="${pageContext.request.contextPath}/assets/brand/myebay-logo.svg" alt="" width="200" height="90">
 		    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 		
 		    <div class="form-floating">
