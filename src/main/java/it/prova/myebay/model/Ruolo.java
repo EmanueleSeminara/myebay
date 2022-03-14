@@ -67,7 +67,7 @@ public class Ruolo implements Comparable<Ruolo> {
 
 	@Override
 	public int compareTo(Ruolo o) {
-		return Long.compare(this.id, o.getId());
+		return this.codice.compareTo(o.getCodice());
 	}
 
 }

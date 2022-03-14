@@ -73,12 +73,10 @@
 					    </div>
 					    
 					    <div class='card-footer'>
-					        <a href="${pageContext.request.contextPath }/ExecuteListAnnuncioServlet" class='btn btn-outline-secondary' style='width:80px'>
+					        <a href="${pageContext.request.contextPath }/annuncio/ExecuteListAnnuncioUtenteServlet?idUtente=${userInfo.id}" class='btn btn-outline-secondary' style='width:80px'>
 					            <i class='fa fa-chevron-left'></i> Back
 					        </a>
-					        <a href="${pageContext.request.contextPath }" class='btn btn-outline-primary' style='width:85px'>
-					            <i class='fa fa-chevron-left'></i> Compra
-					        </a>
+					 
 					    </div>
 					<!-- end card -->
 					</div>	

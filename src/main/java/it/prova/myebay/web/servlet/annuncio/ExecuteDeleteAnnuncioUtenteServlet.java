@@ -51,7 +51,6 @@ public class ExecuteDeleteAnnuncioUtenteServlet extends HttpServlet {
 		// String redirect =
 		// "ExecuteListAnnuncioUtenteServlet?operationResult=SUCCESS&idUtente=" +
 		// idUtenteParam;
-		// System.out.println(redirect);
 		// request.getRequestDispatcher("../utente/home.jsp").forward(request,
 		// response);
 		response.sendRedirect(request.getContextPath() + "/utente/home.jsp");

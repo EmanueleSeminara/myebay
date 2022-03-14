@@ -23,7 +23,6 @@ public class ExecuteBuyAnnuncioServlet extends HttpServlet {
 		String idAnnuncio = request.getParameter("idAnnuncio");
 
 		if (!NumberUtils.isCreatable(idUtente) || !NumberUtils.isCreatable(idAnnuncio)) {
-			System.out.println("CIRO");
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
 			request.getRequestDispatcher("").forward(request, response);
